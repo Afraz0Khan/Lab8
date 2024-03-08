@@ -2,6 +2,10 @@ package com.example.lab8;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 //import org.junit.Before;
@@ -32,5 +36,18 @@ public class CustomListTest {
         int listSize = list.getCount();
         list.addCity(new City("Estevan", "SK"));
         assertEquals(list.getCount(),listSize + 1);
+    }
+    @Test
+    public void testHasCity() {
+        CustomList cityList = MockCityList();
+        City city1 = new City("New York", "New York");
+        City city2 = new City("Los Angeles", "California");
+
+        cityList.addCity(city1);
+        cityList.addCity(city2);
+
+        assertTrue(cityList.hasCity(city1)); // City1 should be in the list
+        assertTrue(cityList.hasCity(city2)); // City2 should be in the list
+        assertFalse(cityList.hasCity(new City("Chicago", "Illinois"))); // City not in the list
     }
 }
